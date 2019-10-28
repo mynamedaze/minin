@@ -1,0 +1,13 @@
+@import "../../scss/variables";
+
+.activeQuiz {
+  padding: 20px;
+  color: $font-color--alt;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  margin: 10px 0;
+  .question {
+    display: flex;
+    justify-content: space-between;
+  }
+}
