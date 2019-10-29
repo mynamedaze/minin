@@ -1,12 +1,19 @@
 import React from 'react';
 import './Drawer.scss';
 import Overlay from "../../UI/Overlay/Overlay";
+import {NavLink} from 'react-router-dom';
 
 const links = [
-  1, 2, 3
+  {to: '/', label: 'Список', exact: true},
+  {to: '/auth', label: 'Авторизация', exact: false},
+  {to: '/quiz-creator', label: 'Создать тест', exact: false}
 ];
 
 class Drawer extends React.Component {
+
+  clickHandler = () => {
+    this.props.onClose();
+  };
 
   renderLinks = () => {
     return links.map((link, index) => {
@@ -14,7 +21,12 @@ class Drawer extends React.Component {
         <li
           key={index}
         >
-          <span>Link {link}</span>
+          <NavLink
+            to={link.to}
+            exact={link.exact}
+            activeClassName={'active'}
+            onClick={this.clickHandler}
+          >{link.label}</NavLink>
         </li>
       )
     })
