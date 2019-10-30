@@ -1,10 +1,28 @@
 import React from 'react';
+import './QuizCreator.scss';
+import Button from "../../components/UI/Button/Button";
 
 class QuizCreator extends React.Component {
+
+  submitHandler = event => {
+    event.preventDefault();
+  };
+
   render() {
     return (
-      <div>
-        <h1>Quiz Creator</h1>
+      <div className="quiz-creator">
+        <div>
+          <h1>Создание теста</h1>
+
+          <form onSubmit={this.submitHandler}>
+
+            <select></select>
+
+            <Button
+              type="primary"
+            />
+          </form>
+        </div>
       </div>
     );
   }

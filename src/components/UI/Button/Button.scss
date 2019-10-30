@@ -15,7 +15,7 @@
     box-shadow: inset 2px 2px 1px rgba(0, 0, 0, 0.3);
   }
   &:disabled {
-    background: #ccc;
+    background: #ccc !important;
     color: #000;
     cursor: not-allowed;
   }
