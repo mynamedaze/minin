@@ -6,6 +6,8 @@ import Select from "../../components/UI/Select/Select";
 import {createControl, validate, validateForm} from "../../form/formFramework";
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 import axios from '../../axios/axios-quiz';
+import {connect} from "react-redux";
+import {createQuizQuestion, finishCreateQuiz} from "../../Store/actions/createAction";
 
 function createOptionControl(number) {
   return createControl({
@@ -170,5 +172,17 @@ class QuizCreator extends React.Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    quiz: state.createQuiz.quiz
+  }
+}
 
-export default QuizCreator;
+function mapDispatchToProps(dispatch) {
+  return {
+    createQuizQuestion: item => dispatch(createQuizQuestion(item)),
+    finishCreateQuiz: () => dispatch(finishCreateQuiz())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuizCreator);
