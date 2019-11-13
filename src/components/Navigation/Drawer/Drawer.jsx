@@ -3,19 +3,13 @@ import './Drawer.scss';
 import Overlay from "../../UI/Overlay/Overlay";
 import {NavLink} from 'react-router-dom';
 
-const links = [
-  {to: '/', label: 'Список', exact: true},
-  {to: '/auth', label: 'Авторизация', exact: false},
-  {to: '/quiz-creator', label: 'Создать тест', exact: false}
-];
-
 class Drawer extends React.Component {
 
   clickHandler = () => {
     this.props.onClose();
   };
 
-  renderLinks = () => {
+  renderLinks = (links) => {
     return links.map((link, index) => {
       return (
         <li
@@ -39,11 +33,22 @@ class Drawer extends React.Component {
       clsName.push('close');
     }
 
+    const links = [
+      {to: '/', label: 'Список', exact: true}
+    ];
+
+    if (this.props.isAuthenticated) {
+      links.push({to: '/quiz-creator', label: 'Создать тест', exact: false});
+      links.push({to: '/logout', label: 'Выйти', exact: false});
+    } else {
+      links.push({to: '/auth', label: 'Авторизация', exact: false},);
+    }
+
     return (
         <React.Fragment>
           <nav className={clsName.join(' ')}>
             <ul>
-              {this.renderLinks()}
+              {this.renderLinks(links)}
             </ul>
           </nav>
           { this.props.isOpen ? <Overlay onClick={this.props.onClose}/> : null}
