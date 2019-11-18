@@ -57,7 +57,6 @@ export function autoLogin() {
 export function authSuccess(token) {
   return {
     type: AUTH_SUCCESS,
-    token
   }
 }
 
